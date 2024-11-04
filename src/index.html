@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T R I V I A</title>
+    <script type="module" src="./assets/js/main.js" defer></script>
+  </head>
+  <body class="p-8 flex flex-col gap-2 h-dvh w-dvw relative items-center">
+    <main class="grow max-w-[1280px]">
+      <!-- ÉCRAN D'ACCUEIL -->
+      <div class="home-screen flex flex-col items-center gap-10 justify-evenly pt-4 h-3/4 lg:flex-row max-w-[1024px]">
+        <figure>
+          <img src="./assets/img/trivia_banner.svg" alt="Bannière" class="scale-110 lg:w-[560px]">
+        </figure>
+        <div class="flex flex-col items-center gap-2 lg:pt-40">
+          <h1 class="text-center font-bold font-montserrat text-2xl uppercase tracking-widest pt-2 lg:text-4xl">Welcome to<br><span class="text-5xl lg:text-[5rem] tracking-wider pl-3 font-extrabold">Trivia</span></h1>
+          <div class="btn-container flex flex-col gap-3 pt-4 text-lg font-montserrat font-medium tracking-wide lg:flex-row">
+            <button class="lets-go-btn bg-triviaYellow border-2 border-black rounded-md px-7 py-3 hover:scale-105 transition">Let's Go!</button>
+            <button class="leaderboard-btn bg-triviaBlue rounded-md px-7 py-3 text-white hover:scale-105 transition">Leaderboard</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ÉCRAN SETTINGS -->
+       <div class="hidden settings-screen flex flex-col gap-16 justify-evenly h-1/4 font-montserrat lg:relative">
+        <div class="settings-top flex justify-between">
+          <h2 class="bg-triviaBlue text-white text-lg absolute top-4 left-0 pl-4 pr-2 py-2 font-bold tracking-wide rounded-r-md">Game Settings</h2>
+          <a href="./index.html">
+            <img src="./assets/img/home.svg" alt="Home" class="absolute top-6 right-6 hover:scale-110 transition">
+          </a>
+        </div>
+        <form action="" id="settings" class="p-4 relative flex flex-col gap-6 lg:w-[840px] lg:pt-20">
+          <div class="settings-wrapper border-2 border-black bg-triviaPaleBlue rounded-md p-4 flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:flex-wrap justify-between lg:p-10 lg:gap-10">
+            <fieldset>
+              <legend class="bg-triviaYellow py-1 px-4 rounded-md tracking-normal font-medium text-xl">Difficulty</legend>
+              <ul class="flex flex-col gap-2 pt-3 pl-2">
+                <li class="flex gap-2 text-lg font-light"><input class="w-5" type="radio" name="difficulty" checked>Any</li>
+                <li class="flex gap-2 text-lg font-light"><input class="w-5" type="radio" name="difficulty" id="easy">Easy</li>
+                <li class="flex gap-2 text-lg font-light"><input class="w-5" type="radio" name="difficulty" id="medium">Medium</li>
+                <li class="flex gap-2 text-lg font-light"><input class="w-5" type="radio" name="difficulty" id="hard">Hard</li>
+              </ul>
+            </fieldset>
+  
+            <fieldset>
+              <legend class="bg-triviaYellow py-1 px-4 rounded-md tracking-normal font-medium text-xl">Type</legend>
+              <ul class="flex flex-col gap-2 pt-3 pl-2">
+                <li class="flex gap-2 text-lg font-light"><input class="w-5" type="radio" name="type" checked>Any</li>
+                <li class="flex gap-2 text-lg font-light"><input class="w-5" type="radio" name="type" id="boolean">True / False</li>
+                <li class="flex gap-2 text-lg font-light"><input class="w-5" type="radio" name="type" id="multiple">Multiple Choice</li>
+              </ul>
+            </fieldset>
+  
+            <fieldset>
+              <div class="flex flex-col">
+                <legend class="bg-triviaYellow py-1 px-4 rounded-md tracking-normal font-medium w-fit text-xl">Number of questions</legend>
+                <select name="amount" id="amount" class="bg-triviaPaleBlue font-light text-lg p-3 w-fit outline-0">
+                </select>
+              </div>
+            </fieldset>
+  
+            <fieldset>
+              <div class="flex flex-col">
+                <legend class="bg-triviaYellow py-1 px-4 rounded-md tracking-normal font-medium w-fit text-xl">Choose a category</legend>
+                <select name="category" id="category" class="bg-triviaPaleBlue font-light text-lg w-64 p-3 outline-0">
+                </select>
+              </div>
+            </fieldset>
+          </div>
+          <button class="start-game bg-triviaYellow border-2 border-black rounded-md px-7 py-3 text-lg font-montserrat font-medium tracking-wide w-fit self-center hover:scale-105 transition">Start Game</button>
+        </form>
+       </div>
+
+      <!-- ÉCRAN IN-GAME -->
+       <div class="hidden in-game-screen flex flex-col gap-8 justify-evenly h-2/4 font-montserrat">
+          <div class="flex justify-between">
+            <p class="font-light tracking-normal">Current Score: <span class="score"></span></p>
+            <a href="./index.html">
+              <img src="./assets/img/home.svg" alt="Home">
+            </a>
+          </div>
+          <div class="flex flex-col gap-2">
+            <div class="flex justify-between">
+              <p class="text-xl font-medium tracking-normal">Question:</p>
+              <p class="pr-2 font-medium"><span class="current-question-number"></span> / <span class="total-questions-number"></span></p>
+            </div>
+            <div id="progress-bar" class="bg-triviaPaleBlue h-8 rounded-md"></div>
+          </div>
+          <div class="question-container border-2 border-black bg-triviaPaleBlue rounded-md relative lg:w-[640px]">
+            <div class="hidden good-answer-modal absolute z-50 bg-triviaYellow h-full w-full rounded-md flex items-center justify-center text-center ">
+              <p class="bg-white p-2 rounded-md font-bold text-2xl">Good Answer!</p>
+            </div>
+            <div class="hidden wrong-answer-modal absolute z-50 bg-triviaRed h-full w-full rounded-md flex items-center justify-center text-center ">
+              <p class="bg-white p-2 rounded-md font-bold text-2xl">Wrong Answer.</p>
+              <div class="good-answer"></div>
+            </div>
+            <div class="current-question text-lg p-4"></div>
+            <ul class="answers-list flex flex-col gap-4 p-6 pt-10">
+            </ul>
+            <div class="h-12 flex justify-center">
+              <div class="answer-not-checked-msg hidden text-lg text-triviaRed font-bold tracking-normal">You must select an answer.</div>
+            </div>
+          </div>
+          <button class="next-btn bg-triviaYellow border-2 border-black rounded-md px-7 py-3 text-lg font-montserrat font-medium tracking-wide w-fit self-center hover:scale-105 transition">Next</button>
+        </div>
+
+      <!-- ÉCRAN RESULTS -->
+       <div class="hidden results-screen bg-white w-dvw h-dvh absolute top-0 left-0 flex flex-col items-center text-center gap-12 pt-20">
+          <h2 class="bg-triviaRed w-full p-6 text-white text-3xl tracking-normal max-w-[1024px]"><span class="congrats-msg"></span></h2>
+          <div class="flex flex-col gap-6 items-center">
+            <p class="text-xl tracking-wide font-medium">You obtain a score of:</p>
+            <span class="player-result text-2xl font-extrabold text-white bg-triviaBlue border-2 border-black rounded-full w-24 h-24 flex items-center justify-center tracking-normal"></span>  
+          </div>
+           <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-4 pb-28">
+              <button class="save-score-btn border-2 border-black bg-triviaYellow px-1 tracking-normal hover:scale-105 transition">Save my score</button>
+              <button class="leaderboard-btn underline tracking-wide font-light hover:no-underline transition">Leaderboard</button>
+            </div>
+            <a href="./index.html" class="lets-go-btn bg-triviaYellow border-2 border-black rounded-md px-7 py-3 text-lg font-montserrat font-medium tracking-wide w-fit hover:scale-105 transistion">Play Again</a>  
+          </div>
+          </div>
+
+      <!-- ÉCRAN LEADERBOARD -->
+       <div class="hidden leaderboard-screen absolute top-0 left-0 bg-white w-dvw h-dvh flex flex-col font-montserrat">
+        <div class="grow flex flex-col gap-10 px-4 py-8 max-w-lg self-center w-full lg:relative">
+          <button class="return-btn bg-triviaYellow border-2 border-black px-1 w-fit pointer-cursor hover:scale-105 transition">Return</button>
+          <h2 class="absolute top-7 right-0 px-6 p-2 bg-triviaBlue text-white font-medium rounded-l-md tracking-normal">Leaderboard</h2>
+          <div class="leaderboard-results">
+            <div class="flex flex-col">
+              <ul class="results-list flex flex-col gap-3">
+
+              </ul>
+            </div>
+          </div>
+          <button class="reset-btn bg-triviaYellow border-2 border-black py-1 px-2 w-fit self-center hover:scale-105 transition">Reset Leaderboard</button>
+        </div>
+       </div>
+    </main>
+    <footer class="flex flex-col items-center text-center font-light text-xs font-montserrat p-4">
+      <p>© 2024 - design & developed by alexis turcotte</p>
+    </footer>
+  </body>
+</html>
